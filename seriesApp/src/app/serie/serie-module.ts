@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SerieListar } from './serie-listar/serie-listar';
+import { SerieListar } from './serie-listar/serie-listar.component';
 import { SerieDetail } from './serie-detail/serie-detail';
 
 
@@ -12,6 +12,9 @@ import { SerieDetail } from './serie-detail/serie-detail';
   ],
   imports: [
     CommonModule
+  ],
+  exports: [
+    SerieListar
   ]
 })
 export class SerieModule { }
