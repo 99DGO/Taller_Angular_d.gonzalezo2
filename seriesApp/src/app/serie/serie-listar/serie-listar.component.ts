@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SerieService } from '../serie-service';
 import { SerieDTO } from '../serieDTO';
 
@@ -8,13 +8,18 @@ import { SerieDTO } from '../serieDTO';
   templateUrl: './serie-listar.component.html',
   styleUrls: ['./serie-listar.component.css']
 })
-export class SerieListar {
+export class SerieListar implements OnInit {
 
   series: Array<SerieDTO> = [];
   constructor(private serieService: SerieService) { }
 
+  ngOnInit(): void {
+    this.getSeries();
+  }
+
   getSeries(): void {
     this.serieService.getSeries().subscribe(series => {
+      console.log('✅ Series received:', series);
       this.series = series;
     })
   };
