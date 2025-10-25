@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { SerieService } from '../serie-service';
 import { SerieDTO } from '../serieDTO';
 import { ChangeDetectorRef } from '@angular/core';
@@ -10,9 +10,11 @@ import { ChangeDetectorRef } from '@angular/core';
   styleUrls: ['./serie-listar.component.css']
 })
 export class SerieListar implements OnInit {
-
+  
   series: Array<SerieDTO> = [];
   constructor(private serieService: SerieService, private cdr: ChangeDetectorRef) { }
+
+  @Output() serieSelected = new EventEmitter<SerieDTO>(); 
 
   ngOnInit(): void {
     this.getSeries();
@@ -34,5 +36,9 @@ export class SerieListar implements OnInit {
     }
 
     return totalSeasons / this.series.length;
+  }
+
+  onSelect(serie: SerieDTO): void {
+    this.serieSelected.emit(serie); // Emitimos el evento con la serie seleccionada
   }
 }
