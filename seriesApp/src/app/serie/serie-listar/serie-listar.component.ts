@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SerieService } from '../serie-service';
 import { SerieDTO } from '../serieDTO';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-serie-listar', //HTML tag to use the component
@@ -11,7 +12,7 @@ import { SerieDTO } from '../serieDTO';
 export class SerieListar implements OnInit {
 
   series: Array<SerieDTO> = [];
-  constructor(private serieService: SerieService) { }
+  constructor(private serieService: SerieService, private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.getSeries();
@@ -21,6 +22,17 @@ export class SerieListar implements OnInit {
     this.serieService.getSeries().subscribe(series => {
       console.log('✅ Series received:', series);
       this.series = series;
+      this.cdr.detectChanges();
     })
   };
+
+  getPromedioSeasons(): number {
+    let totalSeasons = 0;
+
+    for (let s of this.series) {
+      totalSeasons += s.seasons;
+    }
+
+    return totalSeasons / this.series.length;
+  }
 }
