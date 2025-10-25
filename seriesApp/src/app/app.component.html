@@ -13,10 +13,10 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <app-serie-listar></app-serie-listar>
+                <app-serie-listar (serieSelected)="onSerieSelected($event)"></app-serie-listar>
             </div>
             <div class="col">
-                <app-serie-detail></app-serie-detail>
+                <app-serie-detail [serie]="selectedSerie"></app-serie-detail>
             </div>
         </div>
     </div>

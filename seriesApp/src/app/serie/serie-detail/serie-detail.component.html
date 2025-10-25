@@ -1,1 +1,12 @@
-<p>serie-detail works!</p>
+
+@if (serie) {
+    <div class="card mt-4" style="width: 18rem;" > 
+        <img class="card-img-top" [src]="serie.poster" alt="Portada de la serie" >
+        <div class="card-body">
+            <h5 class="card-title">{{serie.name}}</h5>
+            <p class="card-text">{{serie.description}}</p>
+            <a [href]="serie.webpage" class="card-link link-primary" target="_blank">Ver más</a>
+        </div>
+
+    </div>
+}

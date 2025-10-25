@@ -40,5 +40,6 @@ export class SerieListar implements OnInit {
 
   onSelect(serie: SerieDTO): void {
     this.serieSelected.emit(serie); // Emitimos el evento con la serie seleccionada
+    console.log('Row clicked:', serie);
   }
 }
